@@ -4,6 +4,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
@@ -20,7 +21,8 @@ import java.util.List;
  **/
 @Configuration
 @EnableWebMvc
-@ComponentScan("controller")
+@EnableScheduling
+@ComponentScan(basePackages = {"controller","service"})
 public class MyMvcConfig extends WebMvcConfigurerAdapter {
 
     @Bean
@@ -50,6 +52,8 @@ public class MyMvcConfig extends WebMvcConfigurerAdapter {
         registry.addViewController("/aa").setViewName("/aa");
         registry.addViewController("/toUpload").setViewName("/upload");
         registry.addViewController("converter").setViewName("converter");
+        registry.addViewController("/see").setViewName("/see");
+        registry.addViewController("/async").setViewName("/async");
     }
 
     /**
