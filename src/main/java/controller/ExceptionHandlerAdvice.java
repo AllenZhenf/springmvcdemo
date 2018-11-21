@@ -22,6 +22,8 @@ public class ExceptionHandlerAdvice {
 
     @ExceptionHandler(value=Exception.class) //拦截所有的exception  value属性可以设置过滤条件
     public ModelAndView exception(Exception exception, WebRequest request){
+        StackTraceElement []element= exception.getStackTrace().clone();
+        System.out.println(element[0].getFileName());
         ModelAndView modelAndView=new ModelAndView("error");
         modelAndView.addObject("errorMessage",exception.getMessage());
         return modelAndView;
